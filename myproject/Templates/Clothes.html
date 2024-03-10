@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+{% extends 'NavBar.html' %}
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce Website</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <script>
+
+    </script>
+</head>
+<body>
+{% block body %}
+    <div class="main-content">
+         <div class="product-card">
+    <img src="{% static 'Images/Clothes/giphy.gif' %}" alt="Product 1">
+    <div class="product-info">
+        <h2 class="product-title">Shirts</h2>
+        <p class="product-description">Brand:NetPlay </p>
+        <p class="product-description">Rate:1000Rs </p>
+        <button class="card-button" onclick="viewProduct('Shirts')">View</button>    </div>
+    </div>
+
+    <div class="product-card">
+    <img src="{% static 'Images/Clothes/Formlas.png' %}" alt="Product 2">
+    <div class="product-info">
+        <h2 class="product-title">Formals</h2>
+        <p class="product-description">Brand:Us Polo</p>
+        <p class="product-description">Price:1100Rs</p>
+   <button class="card-button" onclick="viewProduct('Formals')">View</button>    </div>
+    </div>
+      <div class="product-card">
+      <img src="{% static 'Images/Clothes/CasualShirt.webp' %}" alt="Product 3">
+      <div class="product-info">
+        <h2 class="product-title">Casual Shirt</h2>
+        <p class="product-description">Price:440Rs</p>
+<button class="card-button" onclick="viewProduct('Ladies wear')">View</button>    </div>
+        </div>
+
+    <div class="product-card">
+    <img src="{% static 'Images/Clothes/NikeT-Shirt.jpg' %}" alt="Product 4">
+    <div class="product-info">
+        <h2 class="product-title">Nike T-Shirt</h2>
+        <p class="product-description">Brand:Nike</p>
+        <p class="product-description">Price:1009Rs per peice Brand mari</p>
+<button class="card-button" onclick="viewProduct('mensShoes')">View</button>    </div>
+        </div>
+
+    <div class="product-card">
+    <img src="{% static 'Images/Clothes/Pant.jpg' %}" alt="Product 3">
+    <div class="product-info">
+        <h2 class="product-title">Pant</h2>
+        <p class="product-description">Price:800Rs </p>
+<button class="card-button" onclick="viewProduct('highHeels')">View</button>    </div>
+        </div>
+
+         <div class="product-card">
+         <img src="{% static 'Images/Clothes/DenimShirt.webp' %}" alt="Product 3">
+    <div class="product-info">
+        <h2 class="product-title">DenimShirt</h2>
+        <p class="product-description">Price:1000Rs </p>
+<button class="card-button" onclick="viewProduct('watch')">View</button>    </div>
+        </div>
+        <div class="product-card">
+         <img src="{% static 'Images/Clothes/traditional.gif' %}" alt="Product 3">
+    <div class="product-info">
+        <h2 class="product-title">Gagra</h2>
+        <p class="product-description">Price:699Rs </p>
+<button class="card-button" onclick="viewProduct('headphones')">View</button>
+    </div>
+        </div>
+         <div class="product-card">
+    <img src="{% static 'Images/Clothes/Lehanga.jpg' %}" alt="Product 1">
+    <div class="product-info">
+        <h2 class="product-title">Lehanga</h2>
+
+        <p class="product-description">Rate:5000Rs per Kg </p>
+        <button class="card-button" onclick="viewProduct('Night Dress')">View</button>    </div>
+    </div>
+         <div class="product-card">
+    <img src="{% static 'Images/Clothes/MenKurtha.png' %}" alt="Product 1">
+    <div class="product-info">
+        <h2 class="product-title">MenKurtha</h2>
+        <p class="product-description">Price:10000</p>
+        <button class="card-button" onclick="viewProduct('Night Dress')">View</button>    </div>
+    </div>
+        <div class="product-card">
+         <img src="{% static 'Images/Clothes/WomenKurtha.png' %}" alt="Product 3">
+    <div class="product-info">
+        <h2 class="product-title">WomenKurtha</h2>
+        <p class="product-description">Price:1100 Rs</p>
+<button class="card-button" onclick="viewProduct('headphones')">View</button>
+
+    </div>
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>

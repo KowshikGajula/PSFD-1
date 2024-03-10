@@ -1,0 +1,408 @@
+{% load static %}
+<head>
+    <link rel="icon" type="Image/png" href='{% static "Images/shop.png" %}' style="width: 60px; height: 60px;">
+<style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Navbar styles */
+         .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10%;
+            background-color: #34495e;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 999;
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: color 0.3s;
+        }
+         .navbar a:hover {
+            color: #f39c12;
+        }
+
+        .site-title {
+            font-size: 24px;
+            color: #FFFFFF; /* Change color to white */
+            margin: 0;
+        }
+
+        #site-search {
+            padding: 10px;
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+            margin-right: 10px;
+            flex-grow: 1;
+            max-width: 40%;
+        }
+
+        .card-button {
+            padding: 10px 20px;
+            background-color: #f39c12;
+            text-align:centre;
+             color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropbtn {
+            background-color: #FFA500;
+            color: white;
+            padding: 10px 10px;
+            border-radius:10px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Main content styles */
+        .main-content {
+            margin-top: 60px; /* Adjust based on navbar height */
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        /* Product card styles */
+        .product-card {
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 5px;
+            display: flex;
+            align-items: center;
+            flex-basis: calc(33.33% - 40px);
+            max-width: calc(33.33% - 40px);
+            box-sizing: border-box;
+        }
+
+        .product-card img {
+            width: 300%;
+            height: auto;
+            max-width: 300px;
+            max-height: 300px;
+            object-fit: contain;
+            margin-right: 30px;
+        }
+
+        .product-info {
+            padding: 5px;
+        }
+
+        .product-title {
+            font-size: 20px;
+            color: #333333;
+            margin: 0;
+        }
+
+        .product-description {
+            color: #666666;
+            font-size: 16px;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+            transition: box-shadow 0.5s, transform 0.3s;
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 900px) {
+            .product-card {
+                flex-basis: calc(50% - 40px);
+                max-width: calc(50% - 40px);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .product-card {
+                flex-basis: calc(100% - 40px);
+                max-width: calc(100% - 40px);
+            }
+
+            #site-search {
+                max-width: 20%;
+            }
+
+            .site-title {
+                font-size: 20px;
+            }
+        }
+     .card-button:hover {
+            background-color: #e67e22;
+
+        }
+
+
+    </style>
+    <script>
+ const products = {
+    'Night Dress': {
+        name: 'Night Dress',
+        description: 'This comfortable night dress from US Polo is perfect for a good night\'s sleep. Made with high-quality fabric, it offers a cozy fit for relaxation after a long day. Its stylish design adds a touch of elegance to your nightwear collection.',
+        image: '{% static "Images/Product2.webp" %}',
+        rate: '500rs',
+        review: '★★★★☆ Comfortable and stylish nightwear. Great quality fabric.'
+    },
+    'Shirts': {
+        name: 'Shirts',
+        description: 'Add a touch of sophistication to your wardrobe with these stylish shirts. Made with premium materials, these shirts offer both comfort and style. Perfect for casual outings or formal occasions, they are a must-have for any fashion-forward individual.',
+        image: '{% static "Images/Clothes/giphy.gif" %}',
+        rate: 'Price details here',
+        review: '★★★★★ Excellent quality shirts. Fits perfectly and looks great!'
+    },
+    'Ladies wear': {
+        name: 'Ladies wear',
+        description: 'Elevate your style with our exclusive collection of ladies wear. From trendy tops to elegant dresses, our pieces are designed to make you stand out. Crafted with attention to detail and quality, our clothing ensures comfort and confidence with every wear.',
+        image: '{% static "Images/Clothes/traditional.gif" %}',
+        rate: 'Price details here',
+        review: '★★★★☆ Stylish and comfortable clothing. Perfect for any occasion.'
+    },
+    'Mens Shoes': {
+        name: 'Mens Shoes',
+        description: 'Step up your shoe game with these fashionable men\'s shoes from Puma. Designed for both style and performance, these shoes are a perfect blend of comfort and durability. Whether you\'re hitting the gym or strolling around the city, these shoes have got you covered.',
+        image: '{% static "Images/Main/mensshoes.webp" %}',
+        rate: 'Price details here',
+        review: '★★★★★ Comfortable and stylish shoes. Great for everyday wear.'
+    },
+    'High Heels': {
+        name: 'High Heels',
+        description: 'Add a touch of glamour to your ensemble with these stunning high heels from Puma. Designed for both style and comfort, these heels are perfect for a night out or a special occasion. Elevate your look and make a statement with every step.',
+        image: '{% static "Images/womenShoes.webp" %}',
+        rate: 'Price details here',
+        review: '★★★★☆ Elegant and comfortable high heels. Perfect for parties.'
+    },
+    'Watch': {
+        name: 'Watch',
+        description: 'Stay punctual and stylish with this sleek watch from FastTrack. Crafted with precision and elegance, this watch is a perfect accessory for any outfit and occasion. Its reliable functionality and modern design make it a must-have for every fashion enthusiast.',
+        image: '{% static "Images/Electronics/Watch.gif" %}',
+        rate: 'Price details here',
+        review: '★★★★★ Stylish and reliable watch. Love the design and functionality.'
+    },
+    'Headphones': {
+        name: 'Headphones',
+        description: 'Immerse yourself in superior sound quality with these high-performance headphones from Boat. Whether you\'re listening to music, watching movies, or gaming, these headphones deliver an exceptional audio experience. Comfortable and stylish, they are perfect for everyday use.',
+        image: '{% static "Images/Electronics/Headphones.gif" %}',
+        rate: 'Price details here',
+        review: '★★★★☆ Great sound quality. Comfortable to wear for long periods.'
+    },
+    'Salt': {
+        name: 'Salt',
+        description: 'Enhance the flavor of your dishes with this premium salt from Tata. Sourced from the finest locations, this salt is packed with essential minerals and adds a rich taste to your culinary creations. Elevate your cooking and enjoy delicious meals with Tata salt.',
+        image: '{% static "Images/Groceries/salt.jpeg" %}',
+        rate: '500rs',
+        review: '★★★★★ Excellent quality salt. Enhances the taste of every dish.'
+    },
+    'Aashirwad Atta': {
+        name: 'Aashirwad Atta',
+        description: 'Experience the goodness of traditional Indian rotis with Aashirwad Atta. Made from premium quality wheat grains, this atta is rich in nutrients and fiber. Perfect for making soft and fluffy rotis, it ensures a wholesome meal for you and your family.',
+        image: '{% static "Images/Groceries/download.jpeg" %}',
+        rate: 'Price details here',
+        review: '★★★★☆ Great quality atta. Makes delicious and nutritious rotis.'
+    },
+    'Rock Salt': {
+        name: 'Rock Salt',
+        description: 'Discover the natural benefits of rock salt in your daily cooking. Sourced from the purest reserves, this rock salt is rich in essential minerals and adds a distinct flavor to your dishes. Elevate your culinary experience with the goodness of rock salt.',
+        image: '{% static "Images/Groceries/Rocksalt.jpeg" %}',
+        rate: 'Price details here',
+        review: '★★★★★ Love the unique flavor of rock salt. Adds a nice touch to dishes.'
+    },
+    'Oil': {
+        name: 'Oil',
+        description: 'Cook your favorite dishes with this high-quality cooking oil from Puma. Specially processed and refined, this oil preserves the natural flavors of your ingredients while ensuring a healthy meal. Make every cooking experience delightful with Puma cooking oil.',
+        image: '{% static "Images/Groceries/Oil.jpeg" %}',
+        rate: 'Price details here',
+        review: '★★★★☆ Excellent cooking oil. Light and perfect for all recipes.'
+    },
+    'Tamarind': {
+        name: 'Tamarind',
+        description: 'Add a tangy twist to your recipes with this premium tamarind from Puma. Handpicked and carefully processed, this tamarind is packed with flavor and nutrients. Whether you\'re making chutneys or curries, Puma tamarind adds a delicious zing to your dishes.',
+        image: '{% static "Images/Groceries/Tarmarind.jpeg" %}',
+        rate: 'Price details here',
+        review: '★★★★★ Great quality tamarind. Enhances the taste of my dishes.'
+    },
+    'Sugar': {
+        name: 'Sugar',
+        description: 'Sweeten your beverages and desserts with this fine-quality sugar from FastTrack. Made from the finest sugarcane, this sugar is perfect for adding sweetness to your tea, coffee, and desserts. Enjoy the pure taste of sweetness with FastTrack sugar.',
+        image: '{% static "Images/Groceries/Sugar.jpeg" %}',
+        rate: 'Price details here',
+        review: '★★★★☆ Excellent sugar. Dissolves quickly and tastes great.'
+    },
+    'Tea Powder': {
+        name: 'Tea Powder',
+        description: 'Start your day on a refreshing note with this aromatic tea powder from Boat. Sourced from the finest tea gardens, this tea powder is packed with flavor and antioxidants. Enjoy a perfect cup of tea every morning with Boat tea powder.',
+        image: '{% static "Images/Groceries/Teapowder.jpeg" %}',
+        rate: 'Price details here',
+        review: '★★★★★ Love the aroma and flavor of this tea powder. Perfect start to my day.'
+    },
+    'Upma Rava': {
+        name: 'Upma Rava',
+        description: 'Make delicious and nutritious upma with this high-quality rava from Boat. Made from premium quality grains, this rava is rich in fiber and essential nutrients. Cook up tasty and wholesome meals for your family with Boat upma rava.',
+        image: '{% static "Images/Groceries/Upmarava.png" %}',
+        rate: 'Price details here',
+        review: '★★★★☆ Great quality rava. Makes fluffy and delicious upma.'
+    },
+    'Dal': {
+        name: 'Dal',
+        description: 'Enjoy the authentic taste of Indian cuisine with this premium dal from Boat. Sourced from the finest farms, this dal is rich in protein and essential nutrients. Cook hearty and delicious dal dishes for your family with Boat dal.',
+        image: '{% static "Images/Groceries/Dal.jpeg" %}',
+        rate: 'Price details here',
+        review: '★★★★★ Excellent quality dal. Cooks quickly and tastes delicious.'
+    },
+    'Rice': {
+        name: 'Rice',
+        description: 'Cook fluffy and aromatic rice with this premium quality rice from Boat. Sourced from the best rice fields, this rice is perfect for making biryanis, pulavs, and other rice dishes. Enjoy delicious and nutritious meals with Boat rice.',
+        image: '{% static "Images/Groceries/Rice.jpg" %}',
+        rate: 'Price details here',
+        review: '★★★★☆ Great quality rice. Cooks evenly and tastes delicious.'
+    },
+    'iPhone': {
+        name: 'iPhone',
+        description: 'Experience the ultimate in smartphone technology with the iPhone from Tata. Sleek, powerful, and intuitive, the iPhone offers a seamless user experience and innovative features. Stay connected and productive with the iPhone from Tata.',
+        image: '{% static "Images/Electronics/Iphone.jpeg" %}',
+        rate: '500rs',
+        review: '★★★★★ Amazing smartphone. Fast and reliable performance.'
+    },
+    'TV': {
+        name: 'TV',
+        description: 'Transform your entertainment experience with this high-definition TV from Aashirwad. Immerse yourself in stunning visuals and crystal-clear sound. Whether you\'re watching movies or gaming, the Aashirwad TV delivers an unparalleled viewing experience.',
+        image: '{% static "Images/Electronics/Tv.webp" %}',
+        rate: 'Price details here',
+        review: '★★★★☆ Excellent TV. Great picture quality and sound.'
+    },
+    'Headphones': {
+        name: 'Headphones',
+        description: 'Immerse yourself in superior sound quality with these high-performance headphones from Boat. Whether you\'re listening to music, watching movies, or gaming, these headphones deliver an exceptional audio experience. Comfortable and stylish, they are perfect for everyday use.',
+        image: '{% static "Images/Electronics/Headphones.gif" %}',
+        rate: 'Price details here',
+        review: '★★★★☆ Great sound quality. Comfortable to wear for long periods.'
+    },
+    'Washing Machine': {
+        name: 'Washing Machine',
+        description: 'Simplify your laundry routine with this advanced washing machine from Puma. Designed for efficiency and convenience, this washing machine offers multiple wash programs and smart features. Keep your clothes clean and fresh with the Puma washing machine.',
+        image: '{% static "Images/Electronics/Washing Machine.webp" %}',
+        rate: 'Price details here',
+        review: '★★★★★ Excellent washing machine. Cleans clothes thoroughly and efficiently.'
+    },
+    'Fan': {
+        name: 'Fan',
+        description: 'Stay cool and comfortable during the hot summer months with this high-speed fan from Puma. Designed for maximum airflow and silent operation, this fan keeps your room well-ventilated and refreshing. Beat the heat with the Puma fan.',
+        image: '{% static "Images/Electronics/Fan.webp" %}',
+        rate: 'Price details here',
+        review: '★★★★☆ Powerful fan. Provides excellent air circulation.'
+    },
+    'Oven': {
+        name: 'Oven',
+        description: 'Bake delicious treats and prepare mouthwatering dishes with this versatile oven from FastTrack. Equipped with advanced features and precise temperature control, this oven ensures even cooking and perfect results every time. Elevate your culinary skills with the FastTrack oven.',
+        image: '{% static "Images/Electronics/Oven.jpg" %}',
+        rate: 'Price details here',
+        review: '★★★★★ Love this oven. Easy to use and bakes evenly.'
+    },
+    'AC': {
+        name: 'AC',
+        description: 'Keep your room cool and comfortable with this energy-efficient AC from Boat. Designed for maximum cooling and minimal power consumption, this AC is perfect for hot summer days. Enjoy a refreshing environment with the Boat AC.',
+        image: '{% static "Images/Electronics/Ac.png" %}',
+        rate: 'Price details here',
+        review: '★★★★☆ Great AC. Cools the room quickly and quietly.'
+    },
+    'Dell Laptop': {
+        name: 'Dell Laptop',
+        description: 'Stay productive and connected with this powerful laptop from Boat. Packed with features and performance, this Dell laptop is perfect for work, entertainment, and everything in between. Experience seamless computing with the Dell laptop from Boat.',
+        image: '{% static "Images/Electronics/DellLaptop.webp" %}',
+        rate: 'Price details here',
+        review: '★★★★★ Excellent laptop. Fast and reliable performance.'
+    },
+    'Mixy': {
+        name: 'Mixy',
+        description: 'Make delicious smoothies and shakes with this high-performance mixy from Boat. Designed for efficiency and ease of use, this mixy features multiple speed settings and stainless steel blades for smooth blending. Elevate your culinary skills with the Boat mixy.',
+        image: '{% static "Images/Electronics/Mixy.jpg" %}',
+        rate: 'Price details here',
+        review: '★★★★☆ Great mixy. Blends ingredients smoothly and quickly.'
+    },
+    'Fridge': {
+        name: 'Fridge',
+        description: 'Keep your food fresh and beverages cool with this spacious fridge from Boat. Equipped with advanced cooling technology and ample storage space, this fridge is perfect for large families and households. Enjoy convenience and efficiency with the Boat fridge.',
+        image: '{% static "Images/Electronics/Fridge.jpg" %}',
+        rate: 'Price details here',
+        review: '★★★★★ Excellent fridge. Spacious and keeps food fresh for longer.'
+    }
+};
+
+     function viewProduct(productId) {
+        localStorage.setItem('selectedProduct', JSON.stringify(products[productId]));
+        window.location.href = 'AddtoCart/'; // Adjust according to your URL structure
+    }
+    </script>
+</head>
+<body>
+
+    <div class="navbar">
+        <h1 class="site-title">KL Store</h1>
+        <a href="">Home</a>
+        <div class="dropdown">
+             <button class="dropbtn">Categories <i class="fas fa-caret-down"></i></button>
+            <div class="dropdown-content">
+                <a href="Groceries">Groceries</a>
+                <a href="Electronics">Electronic Gadgets</a>
+                <a href="Clothes">Clothes</a>
+                <a href="Books">Books</a>
+                <!-- Add more categories here -->
+            </div>
+        </div>
+        <input type="search" id="site-search" name="q" placeholder="Search...">
+        <button class="card-button" onclick="location.href='cart'">Cart</button>
+    </div>
+{% block body %}
+
+{% endblock %}
+</body>

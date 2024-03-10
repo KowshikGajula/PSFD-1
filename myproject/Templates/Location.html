@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Location</title>
+    <style>
+
+            body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('{% static "Images/Main/project.jpg" %}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        }
+        .login-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 400px;
+            max-width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        h2 {
+            color: inherit; /* Inherits from container */
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input, button {
+            padding: 15px; /* Increased padding for better appearance */
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            background: rgba(255, 255, 255, 0.8); /* Slightly transparent to show the background */
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .input-box {
+            background: rgba(255, 255, 255, 0.8); /* Slightly transparent white background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+            margin-bottom: 20px; /* Spacing between the box and the submit button */
+        }
+    </style>
+    <script>
+        function LocationDashboard() {
+            alert("Your Location has been saved");
+            window.location.href = 'dashboard';
+        }
+
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <div class="input-box ">
+        <h2>Enter Your Location</h2>
+        <form id="locationForm" class="reset-form" action="" method="post" onsubmit="event.preventDefault(); LocationDashboard();">
+            <input type="text" id="address" name="address" placeholder="Address" required>
+            <input type="text" id="city" name="city" placeholder="City" required>
+            <input type="text" id="state" name="state" placeholder="State" required>
+            <input type="text" id="zip" name="zip" placeholder="Zip Code" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+
+</body>
+</html>

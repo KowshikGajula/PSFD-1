@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+{% extends 'NavBar.html' %}
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce Website</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+{% block body %}
+    <div class="main-content">
+         <div class="product-card">
+    <img src="{% static 'Images/Groceries/salt.jpeg' %}" alt="Product 1">
+    <div class="product-info">
+        <h2 class="product-title">Salt</h2>
+        <p class="product-description">Brand:Tata </p>
+        <p class="product-description">Rate:50Rs </p>
+        <button class="card-button" onclick="viewProduct('Salt')">View</button>    </div>
+    </div>
+
+    <div class="product-card">
+    <img src="{% static 'Images/Groceries/download.jpeg' %}" alt="Product 2">
+    <div class="product-info">
+        <h2 class="product-title">Aashirwad Atta</h2>
+        <p class="product-description">Brand:Aashirwad</p>
+        <p class="product-description">Price:110Rs</p>
+   <button class="card-button" onclick="viewProduct('Aashirwad Atta')">View</button>    </div>
+    </div>
+      <div class="product-card">
+      <img src="{% static 'Images/Groceries/Rocksalt.jpeg' %}" alt="Product 3">
+      <div class="product-info">
+        <h2 class="product-title"> Rock Salt</h2>
+        <p class="product-description">Price:40Rs</p>
+<button class="card-button" onclick="viewProduct('Rock Salt')">View</button>    </div>
+        </div>
+
+    <div class="product-card">
+    <img src="{% static 'Images/Groceries/Oil.jpeg' %}" alt="Product 4">
+    <div class="product-info">
+        <h2 class="product-title">Oil</h2>
+        <p class="product-description">Brand:Freedom</p>
+        <p class="product-description">Price:109Rs per liter</p>
+<button class="card-button" onclick="viewProduct('Oil')">View</button>    </div>
+        </div>
+
+    <div class="product-card">
+    <img src="{% static 'Images/Groceries/Tarmarind.jpeg' %}" alt="Product 3">
+    <div class="product-info">
+        <h2 class="product-title">Tarmarind</h2>
+        <p class="product-description">Price:80Rs per Kg</p>
+<button class="card-button" onclick="viewProduct('Tarmarind')">View</button>    </div>
+        </div>
+
+         <div class="product-card">
+         <img src="{% static 'Images/Groceries/Sugar.jpeg' %}" alt="Product 3">
+    <div class="product-info">
+        <h2 class="product-title">Sugar</h2>
+        <p class="product-description">Price:100Rs per Kg</p>
+<button class="card-button" onclick="viewProduct('Sugar')">View</button>    </div>
+        </div>
+        <div class="product-card">
+         <img src="{% static 'Images/Groceries/Teapowder.jpeg' %}" alt="Product 3">
+    <div class="product-info">
+        <h2 class="product-title">Teapowder</h2>
+        <p class="product-description">Price:69Rs per kg</p>
+<button class="card-button" onclick="viewProduct('Teapowder')">View</button>
+    </div>
+        </div>
+         <div class="product-card">
+    <img src="{% static 'Images/Groceries/Upmarava.png' %}" alt="Product 1">
+    <div class="product-info">
+        <h2 class="product-title">UpmaRava</h2>
+
+        <p class="product-description">Rate:50Rs per Kg </p>
+        <button class="card-button" onclick="viewProduct('UpmaRava')">View</button>    </div>
+    </div>
+         <div class="product-card">
+    <img src="{% static 'Images/Groceries/Dal.jpeg' %}" alt="Product 1">
+    <div class="product-info">
+        <h2 class="product-title">Dal</h2>
+        <p class="product-description">Price:100 per Kg</p>
+        <button class="card-button" onclick="viewProduct('Dal')">View</button>    </div>
+    </div>
+        <div class="product-card">
+         <img src="{% static 'Images/Groceries/Rice.jpg' %}" alt="Product 3">
+    <div class="product-info">
+        <h2 class="product-title">Rice</h2>
+        <p class="product-description">Price:110Rs per kg</p>
+<button class="card-button" onclick="viewProduct('Rice')">View</button>
+
+    </div>
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>

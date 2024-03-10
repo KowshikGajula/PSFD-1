@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% extends 'NavBar.html' %}
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce Website</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+{% block body %}
+    <div class="main-content">
+        <div class="product-card">
+            <img src="{% static 'Images/Product2.webp' %}" alt="Product 1">
+            <div class="product-info">
+                <h2 class="product-title">Night Dress</h2>
+                <p class="product-description">Brand: US Polo</p>
+                <p class="product-description">Rate: 500rs</p>
+                <button class="card-button" onclick="viewProduct('Night Dress')">View</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="{% static 'Images/Clothes/giphy.gif' %}" alt="Product 2">
+            <div class="product-info">
+                <h2 class="product-title">Shirts</h2>
+                <p class="product-description">Description of Product 2</p>
+                <button class="card-button" onclick="viewProduct('Shirts')">View</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="{% static 'Images/Clothes/traditional.gif' %}" alt="Product 3">
+            <div class="product-info">
+                <h2 class="product-title">Ladies wear</h2>
+                <p class="product-description">Description of Product 3</p>
+                <button class="card-button" onclick="viewProduct('Ladies wear')">View</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="{% static 'Images/Main/mensshoes.webp' %}" alt="Product 4">
+            <div class="product-info">
+                <h2 class="product-title">Mens Shoes</h2>
+                <p class="product-description">Brand: Puma</p>
+                <button class="card-button" onclick="viewProduct('mensShoes')">View</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="{% static 'Images/womenShoes.webp' %}" alt="Product 5">
+            <div class="product-info">
+                <h2 class="product-title">High Heels</h2>
+                <p class="product-description">Brand: Puma</p>
+                <button class="card-button" onclick="viewProduct('highHeels')">View</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="{% static 'Images/Electronics/Watch.gif' %}" alt="Product 6">
+            <div class="product-info">
+                <h2 class="product-title">Watch</h2>
+                <p class="product-description">Brand: FastTrack</p>
+                <button class="card-button" onclick="viewProduct('watch')">View</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="{% static 'Images/Electronics/Headphones.gif' %}" alt="Product 7">
+            <div class="product-info">
+                <h2 class="product-title">Headphones</h2>
+                <p class="product-description">Brand: Boat</p>
+                <button class="card-button" onclick="viewProduct('headphones')">View</button>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+</body>
+</html>

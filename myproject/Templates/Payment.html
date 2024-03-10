@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Payment Method</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .payment-method {
+            text-align: center;
+            border: 2px solid transparent;
+            padding: 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            width: calc(33.33% - 20px);
+            background-color: #f0f0f0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-method:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: #007bff;
+        }
+
+        .payment-method img {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+
+        .payment-method p {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .payment-method button {
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .payment-method button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Select Payment Method</h1>
+    <div class="payment-methods">
+        <div class="payment-method" onclick="payWithUPI()">
+            <img src="{% static 'Images/UPI.jpeg' %}" alt="UPI">
+            <p>Pay with UPI</p>
+            <button><i class="fas fa-mobile-alt"></i> UPI</button>
+        </div>
+
+        <div class="payment-method" onclick="paywithNetBanking()">
+            <img src="{% static 'Images/CreditCards.jpeg' %}" alt="Credit Card">
+            <p>Net Banking</p>
+            <button><i class="far fa-credit-card"></i> Net Banking</button>
+        </div>
+        <div class="payment-method" onclick="payWithCashOnDelivery()">
+            <img src="{% static 'Images/CashOnDelivery.jpeg' %}" alt="Cash on Delivery">
+            <p>Cash on Delivery</p>
+            <button>Cash on Delivery</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script>
+    function payWithUPI() {
+        alert("Redirecting to UPI payment gateway...");
+
+    }
+
+    function paywithNetBanking() {
+        alert("Redirecting to Net Banking payment gateway...");
+         window.location.href = 'NetBanking';
+    }
+
+    function payWithCashOnDelivery() {
+        alert("Your order will be delivered shortly. Please keep cash ready.");
+    }
+</script>
+
+</body>
+</html>

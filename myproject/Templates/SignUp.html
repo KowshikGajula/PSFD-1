@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup Page</title>
+    <link rel="icon" type="Image/png" href='{% static "Images/shop.png" %}' style="width: 60px; height: 60px;">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            overflow: hidden;
+            background-image: url('{% static "Images/Main/project.jpg" %}');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        .login-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 500px;
+            max-width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .signup-heading {
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        .success-message {
+            color: #4caf50;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function showmessage() {
+            alert("Successfully Signed up 😁😁");
+            window.location.href = 'location/';
+        }
+    </script>
+</head>
+<body>
+
+<div class="login-container">
+    <div class="form-container">
+        <h1 class="signup-heading">Welcome to Signup</h1>
+        <form class="reset-form" action="" method="post" onsubmit="event.preventDefault(); showmessage();">
+            <label>
+                User Name:
+                <input type="text" name="fullName" required />
+            </label>
+            <label>
+                Email:
+                <input type="email" name="email" required />
+            </label>
+            <label>
+                Set Password:
+                <input type="password" name="password" required />
+            </label>
+            <label>
+                Confirm Password:
+                <input type="password" name="confirmPassword" required />
+            </label>
+            <input type="submit" value="Submit" />
+        </form>
+        <div class="success-message" id="success-message"></div>
+    </div>
+</div>
+
+</body>
+</html>

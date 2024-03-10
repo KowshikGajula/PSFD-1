@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+{% include 'NavBar.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product View</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.5s ease;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+        #productImage {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        #productDescription, #review {
+            color: #666;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        #review {
+            font-style: italic;
+        }
+        .button-container {
+            text-align: center;
+        }
+        .button-container button {
+            padding: 12px 24px;
+            background-color: #f39c12;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+            animation: slideIn 0.5s ease;
+            margin: 0 10px;
+        }
+        .button-container button:hover {
+            background-color: #e67e22;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    {% block body %}
+    <h1 id="productName"></h1>
+    <img id="productImage" src="" alt="Product Image">
+    <p id="productDescription"></p>
+    <p id="review"></p>
+    <div class="button-container">
+        <button id="addToCartButton">Add to Cart</button>
+        <button id="BuyNow">Buy Now</button>
+    </div>
+    {% endblock %}
+</div>
+
+<script>
+    window.onload = function() {
+        const product = JSON.parse(localStorage.getItem('selectedProduct'));
+        if(product) {
+            document.getElementById('productName').textContent = product.name;
+            document.getElementById('productImage').src = product.image;
+            document.getElementById('productDescription').textContent = product.description;
+            document.getElementById('review').textContent = product.review;
+
+            // Add event listener for the Add to Cart button
+            document.getElementById('addToCartButton').addEventListener('click', function() {
+                let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+                cartItems.push(product);
+                localStorage.setItem('cart', JSON.stringify(cartItems));
+
+                // Redirect to the cart page after adding the product to the cart
+                window.location.href = 'cart';
+                console.log('Product added to cart:', product.name);
+            });
+
+            // Add event listener for the Buy Now button
+            document.getElementById('BuyNow').addEventListener('click', function() {
+                // Redirect to the desired page when Buy Now is clicked
+                window.location.href = 'Payment';
+                console.log('Redirecting to checkout page for:', product.name);
+            });
+        }
+    }
+</script>
+</body>
+</html>

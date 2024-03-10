@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="icon" type="Image/png" href='{% static "Images/shop.png" %}' style="
+
+ width: 60px; height: 60px;">
+
+    <title> Login Page</title>
+     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            overflow: hidden;
+            background-image: url('{% static "Images/Main/project.jpg" %}');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+
+
+        .login-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 400px;
+            max-width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            color: #666;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .link {
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .link a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+ <script >
+        function showmessage() {
+
+            window.location.href = 'dashboard/';
+        }
+
+
+</script>
+</head>
+<body>
+
+
+<div class="login-container">
+
+
+    <h1>Login Page</h1>
+    <form class="reset-form" action="" method="post" onsubmit="event.preventDefault(); showmessage();">
+        <!-- Django CSRF Token -->
+        {% csrf_token %}
+
+        <div>
+            <input type="text" placeholder="username" id="username" name="username" class="name" required/>
+        </div>
+
+        <div>
+            <input type="password" placeholder="password" id="password" name="password" class="name" required/>
+        </div>
+    <div>
+        <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+    </div>
+
+
+        <div class="">
+            <button type="submit">Login</button>
+        </div>
+        <div class="g-recaptcha" data-sitekey="6LeK0lQpAAAAAPKREj3TXTvbWA8veCxVLAZG6dlI"></div>
+
+
+        <p class="link">
+            <a href="forget">Forgot password?</a> Or <a href="/signUp">Sign Up</a>
+        </p>
+    </form>
+</div>
+
+</body>
+</html>
